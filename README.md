@@ -110,7 +110,9 @@ plt.yticks(fontsize=10)
 
 plt.show()
 ```
+The plots below show the corresponding amplitude and phase spectrums of our sweep.
 
+<img src=./images/amp_phase_spec.png>
 
 
 
