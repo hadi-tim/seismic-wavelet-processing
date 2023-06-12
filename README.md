@@ -1,6 +1,7 @@
 # Table of contents
 * [Introduction](#introduction)
 * [Vibrator Sweep](#vibrator-sweep)
+* [FFT in Python](#fft-in-python)
 * [Amplitude and Phase spectrum](#amplitude-and-phase-spectrum)
 * [Installing Seismic Unix](#installing-seismic-unix)
 * [Seismic processing of 2D line](#seismic-processing-of-2D-line)
@@ -39,6 +40,17 @@ plot_sweep('sweep.csv')
 ```
 <img src=./images/sweep.png>
 
-## Amplitude and Phase spectrum
+## FFT in Python
+Let's calculate the amplitude and the phase spectrum of our sweep. 
+The amplitude and phase spectrums are obtained by converting the signal from time domain to frequency domain.
+In programming the **Fourier Transform**  needs to be in a discrete form given by:
+
+$$X(k) = \sum_{n=0}^n x(n) e^{-i2 \pi kn \over N}$$
+
+where, $k$ is the index of the $k_{th}$ frequency point, where $f_k$ = $k f_s \over N$, $f_s$ is the frequency sampling of the signal.
+## Amplitude and Phase Spectrum
+
+
+
 
 
