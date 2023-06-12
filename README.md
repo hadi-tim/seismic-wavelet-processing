@@ -1,7 +1,7 @@
 # Table of contents
 * [Introduction](#introduction)
 * [Vibrator Sweep](#vibrator-sweep)
-* [Installing Xming Server](#installing-xming-server)
+* [Amplitude and Phase spectrum](#amplitude-and-phase-spectrum)
 * [Installing Seismic Unix](#installing-seismic-unix)
 * [Seismic processing of 2D line](#seismic-processing-of-2D-line)
 *
@@ -37,5 +37,8 @@ def plot_sweep(file):
     plt.show()
 plot_sweep('sweep.csv')
 ```
-<img src=
+<img src=./images/sweep.png>
+
+## Amplitude and Phase spectrum
+
 
