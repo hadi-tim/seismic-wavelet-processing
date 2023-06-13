@@ -37,7 +37,9 @@ def plot_sweep(file):
     plt.show()
 plot_sweep('sweep.csv')
 ```
-<img src=./images/sweep.png>
+<p align="center">
+    <img src=./images/sweep.png width='700'>
+</p>
 
 ## FFT in Python
 Let's calculate the amplitude and the phase spectrum of our sweep. 
@@ -111,7 +113,9 @@ plt.show()
 ```
 The plots below show the corresponding amplitude and phase spectrums of our sweep.
 
-<img src=./images/amp_phase_spec.png>
+<p align="center">
+<img src=./images/amp_phase_spec.png width='700'>
+</p>
 
 ## Pilot Sweep Autocorrelation
 
@@ -124,7 +128,9 @@ Let's check the correlation of the pilot sweep with itsel `Autocorrelation`
 
 In this section, I will do a simple manipulation of converting our wavelet "Sweep Autocorrelation" into a minimum phase filter, then calculate the FFT of the signal to output the amplitude and phase spectra.
 
-<img src=./images/fft_sweep>
+<img src=./images/fft_sweep.png>
 
+For the conversion to minimum phase, I compared two methods from **Scipy** Python library; `Homomorphic` and `Hilbert`.
+The documentation of these two methods can be found [here](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.minimum_phase.html#rde52ba5e24c3-1).
 
 
