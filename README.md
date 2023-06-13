@@ -216,5 +216,5 @@ plt.tight_layout()
 This displays show respectively, 1) the sweep autocorrelation, 2) the minimum phase calculation, 3) the amplitude spectrum and 4) the phase spectrum.
 
 <p align="center">
-    <img src=./images/min_phase_filter_spec.png class="center">
+    <img src=./images/min_phase_filter_spec.png class="center" width=700>
 </p>
