@@ -123,6 +123,8 @@ Let's check the correlation of the pilot sweep with itsel `Autocorrelation`
 ## Converting to minimum phase filter
 
 In this section, I will do a simple manipulation of converting our wavelet "Sweep Autocorrelation" into a minimum phase filter, then calculate the FFT of the signal to output the amplitude and phase spectra.
-I 
+
+<img src=./images/fft_sweep>
+
 
 
