@@ -3,9 +3,8 @@
 * [Vibrator Sweep](#vibrator-sweep)
 * [FFT in Python](#fft-in-python)
 * [Amplitude and Phase spectrum](#amplitude-and-phase-spectrum)
-* [Installing Seismic Unix](#installing-seismic-unix)
-* [Seismic processing of 2D line](#seismic-processing-of-2D-line)
-*
+* [Pilot Sweep Autocorrelation](#pilot-sweep-autocorrelation)
+* [Converting to minimum phase filter](#converting-tominimum-phase-filter)
 
 ## Introduction
 The seismic wavelet is the combination of the wavelet transmitted into the earth, modified by the earth’s transmission, and then by the instruments responses. Then, the wavelet processing describes what is done to alter the wavelet so that it is short, well-behaved, and more useful for interpretation.
@@ -114,5 +113,16 @@ The plots below show the corresponding amplitude and phase spectrums of our swee
 
 <img src=./images/amp_phase_spec.png>
 
+## Pilot Sweep Autocorrelation
+
+Let's check the correlation of the pilot sweep with itsel `Autocorrelation`
+<p align="center">
+    <img src=./images/corr.png class="center">
+</p>
+
+## Converting to minimum phase filter
+
+In this section, I will do a simple manipulation of converting our wavelet "Sweep Autocorrelation" into a minimum phase filter, then calculate the FFT of the signal to output the amplitude and phase spectra.
+I 
 
 
