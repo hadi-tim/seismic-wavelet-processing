@@ -5,6 +5,7 @@
 * [Amplitude and Phase spectrum](#amplitude-and-phase-spectrum)
 * [Pilot Sweep Autocorrelation](#pilot-sweep-autocorrelation)
 * [Converting to minimum phase filter](#converting-to-minimum-phase-filter)
+* [Minimum Phase Filter Spectrums](#minimum-phase-filter-spectrum)
 
 ## Introduction
 The seismic wavelet is the combination of the wavelet transmitted into the earth, modified by the earth’s transmission, and then by the instruments responses. Then, the wavelet processing describes what is done to alter the wavelet so that it is short, well-behaved, and more useful for interpretation.
@@ -119,7 +120,37 @@ The plots below show the corresponding amplitude and phase spectrums of our swee
 
 ## Pilot Sweep Autocorrelation
 
-Let's check the correlation of the pilot sweep with itsel `Autocorrelation`
+Let's check the correlation of the pilot sweep with itsel `Autocorrelation`. The code below does the autocorrelation of the sweep.
+
+```Python
+import scipy.signal
+from numpy.fft import fft, ifft
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+t = np.arange(0, 14.002, dt)
+
+''' 1ST METHODE USING Numpy'''
+corr = np.correlate(signal, signal, mode='full') 
+corr /= np.max(corr) # To get 1 as max amplitude at full correlation
+
+''' 2ND METHODE USING Scipy '''
+#corr = scipy.signal.correlate(signal, signal, mode='full', method='auto') 
+#corr /= np.max(corr) # To get 1 as max amplitude at full correlation
+
+plt.figure(dpi=40)
+#plt.acorr(signal, maxlags = 100)
+plt.xlim(6600, 7400)
+plt.grid(True)
+plt.xlabel('Time(ms)', fontsize=16)
+plt.ylabel('Amplitude', fontsize=16)
+plt.title('Sweep Autocorrelation', fontsize=24)
+plt.plot(corr, lw=1.5)
+plt.show()
+```
+
 <p align="center">
     <img src=./images/corr.png class="center">
 </p>
@@ -137,3 +168,53 @@ The documentation of these two methods can be found [here](https://docs.scipy.or
     <img src=./images/min_phase_filter.png class="center" width=700>
 </p>
 
+```Python
+import numpy as np
+from scipy.signal import remez, minimum_phase, freqz, group_delay
+import matplotlib.pyplot as plt
+
+h_min_hom = minimum_phase(corr_function, method='homomorphic')
+h_min_hil = minimum_phase(corr_function, method='hilbert')
+fig, axs = plt.subplots(4, figsize=(10, 12), dpi=80)
+for h, style, color, linewidth, in zip((corr_function, h_min_hom, h_min_hil),
+                           ('-', '-', '-'), ('b', 'r', 'c'), (1.5, 1.5)):
+    w, H = freqz(h)
+    w, gd = group_delay((h, 1))
+    w /= np.pi
+    axs[0].plot(corr_function, color='c', linewidth=linewidth)
+    axs[1].plot(h_min_hom, color='r', linestyle=style, linewidth=linewidth)
+    axs[1].plot(h_min_hil, color='b', linestyle=style, linewidth=linewidth)
+    axs[1].set(xlim=[0,500])
+    axs[1].set(title='Minimum Phase Filter')
+    axs[2].plot(w, np.abs(H), color=color, linestyle=style, linewidth=linewidth)
+    axs[3].plot(w, 20 * np.log10(np.abs(H)), color=color, linestyle=style, linewidth=linewidth)
+for ax in axs:
+    ax.grid(linestyle='--', linewidth=1, alpha=0.3)
+
+axs[0].set(xlim=[0, len(corr_function) - 1], ylabel='Amplitude', xlabel='Samples')
+axs[1].set(ylabel='Amplitude', xlabel='Samples')
+axs[0].legend(['Sweep Autocorrelation'], fontsize='medium', loc=4)
+axs[1].legend(['Min-Phase-Hom', 'Min-Phase-Hil'], fontsize='medium', loc=4)
+
+for ax, ylim in zip(axs[2:], ([0, 1.6], [-150, 10])):
+    ax.set(xlim=[0, 1], ylim=ylim, xlabel='Frequency (Hz)')
+    ax.legend(['Min-Phase-Hil', 'Min-Phase-Hom'], fontsize='medium', loc=4)
+
+for ax in axs:
+    ax.xaxis.label.set_fontsize(12)
+    ax.yaxis.label.set_fontsize(12)
+    ax.xaxis.set_tick_params(labelsize=10)
+    ax.yaxis.set_tick_params(labelsize=10)
+
+axs[2].set(ylabel='Magnitude')
+axs[3].set(ylabel='Magnitude (dB)')
+plt.tight_layout()
+```
+
+## Minimum Phase Filter Spectrums
+
+This displays show respectively, 1) the sweep autocorrelation, 2) the minimum phase calculation, 3) the amplitude spectrum and 4) the phase spectrum.
+
+<p align="center">
+    <img src=./images/min_phase_filter_spec.png class="center">
+</p>
