@@ -4,7 +4,7 @@
 * [FFT in Python](#fft-in-python)
 * [Amplitude and Phase spectrum](#amplitude-and-phase-spectrum)
 * [Pilot Sweep Autocorrelation](#pilot-sweep-autocorrelation)
-* [Converting to minimum phase filter](#converting-tominimum-phase-filter)
+* [Converting to minimum phase filter](#converting-to-minimum-phase-filter)
 
 ## Introduction
 The seismic wavelet is the combination of the wavelet transmitted into the earth, modified by the earth’s transmission, and then by the instruments responses. Then, the wavelet processing describes what is done to alter the wavelet so that it is short, well-behaved, and more useful for interpretation.
@@ -133,4 +133,7 @@ In this section, I will do a simple manipulation of converting our wavelet "Swee
 For the conversion to minimum phase, I compared two methods from **Scipy** Python library; `Homomorphic` and `Hilbert`.
 The documentation of these two methods can be found [here](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.minimum_phase.html#rde52ba5e24c3-1).
 
+<p align="center">
+    <img src=./images/min_phase_filter.png class="center" width=700>
+</p>
 
